@@ -1,0 +1,11 @@
+### Create new application
+POST http://localhost:8080/admin/api/apps
+Content-Type: application/json
+
+{
+  "name": "onboarding-service",
+  "url": "http://localhost:8463",
+  "description": "Onboarding Service"
+}
+
+###
