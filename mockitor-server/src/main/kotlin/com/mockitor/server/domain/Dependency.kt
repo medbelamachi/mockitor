@@ -4,14 +4,13 @@ import javax.persistence.*
 
 @Entity
 data class Dependency(
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long?,
     val name: String,
     val url: String,
     var description: String?,
+    @ManyToOne(fetch = FetchType.EAGER)
+    var application: Application?,
     @OneToMany
     @JoinColumn(name = "dependency_id")
     /*@OrderColumn(name = "priority")*/
-    var endpoints: Set<Endpoint>?
-)
+    var endpoints: MutableSet<Endpoint>?
+) : BaseEntity()
