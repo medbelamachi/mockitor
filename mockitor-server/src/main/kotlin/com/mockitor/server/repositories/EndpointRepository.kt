@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository
 @Repository
 interface EndpointRepository : JpaRepository<Endpoint, Long> {
     @Query(
-        "SELECT new com.mockitor.server.domain.StubSummary(a.name, d.name, d.url, e.id) " +
+        "SELECT new com.mockitor.server.domain.StubSummary(a.name, d.name, d.url, e.data) " +
                 "FROM Endpoint e " +
                 "JOIN e.dependency d " +
                 "JOIN e.dependency.application a"
