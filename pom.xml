@@ -19,11 +19,14 @@
     <modules>
         <module>mockitor-common</module>
         <module>mockitor-server</module>
+        <module>mockitor-spring-boot-starter</module>
+        <module>web-first</module>
+        <module>web-second</module>
     </modules>
 
     <properties>
         <java.version>11</java.version>
-        <kotlin.version>1.6.10</kotlin.version>
+        <kotlin.version>1.6.21</kotlin.version>
         <spring-boot.version>2.6.4</spring-boot.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
     </properties>
@@ -33,6 +36,22 @@
                 <groupId>com.mockitor</groupId>
                 <artifactId>mockitor-common</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <!--tools-->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.microutils</groupId>
+                <artifactId>kotlin-logging-jvm</artifactId>
+                <version>2.1.21</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.25</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>

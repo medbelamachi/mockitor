@@ -9,7 +9,7 @@ data class DependencyStub(var request: Request, var response: Response) {
         fun fromTriple(t: Triple<String, String, String>) = from(t.first, t.second, t.third)
         fun from(appName: String, depName: String, url: String) = DependencyStub(
             Request(
-                "$url/.*",
+                "/.*",
                 RequestMethod.ANY.value(),
                 hashMapOf(
                     "mockitor-app" to equalTo(appName),

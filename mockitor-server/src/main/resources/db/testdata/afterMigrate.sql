@@ -1,4 +1,4 @@
-insert into application (id, description, name, url)
+/*insert into application (id, description, name, url)
 values (1, 'Onboarding Service', 'onboarding-service', 'http://localhost:8081');
 
 insert into application (id, description, name, url)
@@ -29,4 +29,4 @@ values (3, 2,
 
 insert into endpoint (id, dependency_id, data)
 values (4, 3,
-        '{"request":{"urlPattern":"http://localhost:8084/.*","method":"POST","headers":{"Connection":{"equalTo":"xxx"}}},"response":{"status":200,"proxyBaseUrl":"http://localhost:8084"}}"');
+        '{"request":{"urlPattern":"http://localhost:8084/.*","method":"POST","headers":{"Connection":{"equalTo":"xxx"}}},"response":{"status":200,"proxyBaseUrl":"http://localhost:8084"}}"');*/
