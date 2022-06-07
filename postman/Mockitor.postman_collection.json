@@ -72,6 +72,25 @@
 					"response": []
 				},
 				{
+					"name": "Call with Feign Second from First",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8180/callWithFeign",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8180",
+							"path": [
+								"callWithFeign"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Hello Second",
 					"request": {
 						"method": "GET",
@@ -174,6 +193,68 @@
 			"response": []
 		},
 		{
+			"name": "All Applications",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{adminUrl}}/admin/api/apps",
+					"host": [
+						"{{adminUrl}}"
+					],
+					"path": [
+						"admin",
+						"api",
+						"apps"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All App Dependencies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{adminUrl}}/admin/api/apps/{{appId}}/dependencies",
+					"host": [
+						"{{adminUrl}}"
+					],
+					"path": [
+						"admin",
+						"api",
+						"apps",
+						"{{appId}}",
+						"dependencies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Check if Dependency exist",
 			"event": [
 				{
@@ -187,19 +268,10 @@
 				}
 			],
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"name\": \"party-ms\",\n  \"url\": \"http://localhost:8082\",\n  \"description\": \"Party MS\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "{{adminUrl}}/admin/api/apps/onboarding-service/dependencies/exists",
+					"raw": "{{adminUrl}}/admin/api/apps/web-first/dependencies?url=http://localhost:8280",
 					"host": [
 						"{{adminUrl}}"
 					],
@@ -207,9 +279,14 @@
 						"admin",
 						"api",
 						"apps",
-						"onboarding-service",
-						"dependencies",
-						"exists"
+						"web-first",
+						"dependencies"
+					],
+					"query": [
+						{
+							"key": "url",
+							"value": "http://localhost:8280"
+						}
 					]
 				}
 			},
