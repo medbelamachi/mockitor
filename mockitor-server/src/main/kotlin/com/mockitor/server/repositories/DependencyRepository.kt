@@ -9,5 +9,6 @@ import java.util.*
 interface DependencyRepository : JpaRepository<Dependency, Long> {
     fun findByUrlAndApplication_Name(url: String, appName: String): Optional<Dependency>
     fun findByIdAndApplication_Id(depId: Long, appId: Long): Optional<Dependency>
+    fun findDependenciesByApplication_Id(appId: Long): MutableList<Dependency>
 
 }

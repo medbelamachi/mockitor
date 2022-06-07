@@ -29,6 +29,8 @@
         <kotlin.version>1.6.21</kotlin.version>
         <spring-boot.version>2.6.4</spring-boot.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
+        <feign.version>10.2.0</feign.version>
+        <spring-cloud.version>2021.0.1</spring-cloud.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -37,6 +39,15 @@
                 <artifactId>mockitor-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!--tools-->
             <dependency>
                 <groupId>org.mapstruct</groupId>
