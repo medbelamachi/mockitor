@@ -74,7 +74,7 @@ class CommonTests {
             ) as headerType
             else -> headers
         }
-
+        generateSequence { }
         //.getOrDefault("headers", hashMapOf("mockitor" to " none"))
         log.info { newHeaders }
 

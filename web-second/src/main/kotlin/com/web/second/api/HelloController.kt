@@ -1,6 +1,5 @@
 package com.web.second.api
 
-import lombok.AllArgsConstructor
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -14,5 +13,4 @@ class HelloController {
 
 }
 
-@AllArgsConstructor
 class Dto(val data: String?)
