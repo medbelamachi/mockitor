@@ -29,7 +29,7 @@ class MockServerRepository(val mocksClient: MocksClient) {
     }
 
     fun newStub(stubSummary: StubSummary): Mono<String> =
-        newStub(stubSummary.appName, stubSummary.depName, stubSummary.url)
+        newStub(stubSummary.appName, stubSummary.depName, stubSummary.data)
 
     fun getMapping() = mocksClient.getMappings().doOnNext { log.info { "mockClient returned : $it" } }.subscribe()
 

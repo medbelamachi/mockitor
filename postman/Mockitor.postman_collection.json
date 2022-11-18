@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "47db0eed-49ee-4fca-a61b-3793e324de74",
+		"name": "Mockitor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "wiremock",
+			"item": [
+				{
+					"name": "Get Mappings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create new Application",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.environment.set(\"appId\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"onboarding-service\",\n  \"url\": \"http://localhost:8463\",\n  \"description\": \"Onboarding Service\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{adminUrl}}/admin/api/apps",
+					"host": [
+						"{{adminUrl}}"
+					],
+					"path": [
+						"admin",
+						"api",
+						"apps"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new Dependency",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"party-ms\",\n  \"url\": \"http://localhost:8082\",\n  \"description\": \"Party MS\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{adminUrl}}/admin/api/apps/{{appId}}",
+					"host": [
+						"{{adminUrl}}"
+					],
+					"path": [
+						"admin",
+						"api",
+						"apps",
+						"{{appId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

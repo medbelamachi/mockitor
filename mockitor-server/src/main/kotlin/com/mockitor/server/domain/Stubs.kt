@@ -37,14 +37,5 @@ data class StubSummary(
     val appName: String,
     val depName: String,
     val url: String,
-    val id: Long
+    val data: String
 )
-/*
-data class StubSummary(
-    var appName: String?,
-    var depName: String?,
-    var url: String?,
-    var data: String?
-)
-
-*/
