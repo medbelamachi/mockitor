@@ -17,6 +17,7 @@
 
     <properties>
         <spring-cloud-contract.verion>3.1.1</spring-cloud-contract.verion>
+        <springdoc-openapi.version>1.6.9</springdoc-openapi.version>
     </properties>
     <dependencies>
         <dependency>
@@ -91,6 +92,16 @@
             <groupId>com.github.java-json-tools</groupId>
             <artifactId>json-patch</artifactId>
             <version>1.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-kotlin</artifactId>
+            <version>${springdoc-openapi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-webflux-ui</artifactId>
+            <version>${springdoc-openapi.version}</version>
         </dependency>
 
 
