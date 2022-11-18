@@ -3,6 +3,11 @@ package com.mockitor.server.repositories
 import com.mockitor.server.domain.Dependency
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
+import java.util.*
 
 @Repository
-interface DependencyRepository : JpaRepository<Dependency, Long>
+interface DependencyRepository : JpaRepository<Dependency, Long> {
+    fun existsByUrlAndApplication_Name(url: String, appName: String): Boolean
+    fun findByIdAndApplication_Id(depId: Long, appId: Long): Optional<Dependency>
+
+}

@@ -1,15 +1,16 @@
 package com.mockitor.server.domain
 
-import javax.persistence.*
+import javax.persistence.Entity
+import javax.persistence.FetchType
+import javax.persistence.JoinColumn
+import javax.persistence.OneToMany
 
 @Entity
-data class Application(@Id
-                       @GeneratedValue(strategy = GenerationType.IDENTITY)
-                       val id: Long?,
-                       val name: String,
-                       val url: String,
-                       var description: String?,
-                       @OneToMany
-                       @JoinColumn(name = "application_id")
-                       var dependencies: Set<Dependency>?
-)
+data class Application(
+    val name: String,
+    val url: String,
+    var description: String?,
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "application_id")
+    var dependencies: MutableSet<Dependency>?
+) : BaseEntity()
