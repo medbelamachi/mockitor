@@ -7,7 +7,7 @@ import java.util.*
 
 @Repository
 interface DependencyRepository : JpaRepository<Dependency, Long> {
-    fun existsByUrlAndApplication_Name(url: String, appName: String): Boolean
+    fun findByUrlAndApplication_Name(url: String, appName: String): Optional<Dependency>
     fun findByIdAndApplication_Id(depId: Long, appId: Long): Optional<Dependency>
 
 }

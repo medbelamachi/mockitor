@@ -21,9 +21,9 @@ class AdminController(val adminService: AdminService) {
     fun addDependency(@PathVariable appId: Long, @RequestBody dependencyDto: DependencyDto) =
         adminService.addDependency(appId, dependencyDto)
 
-    @PostMapping("/apps/{appId}/dependencies/exists")
-    fun dependencyExistsBy(@PathVariable appName: String, @RequestBody dependencyDto: DependencyDto) =
-        adminService.dependencyExistsBy(dependencyDto.url, appName)
+    @GetMapping("/apps/{appName}/dependencies")
+    fun findDependency(@PathVariable appName: String, @RequestParam("url") baseUrl: String) =
+        adminService.findDependencyBy(baseUrl, appName)
 
     @PostMapping("/apps/{appId}/dependencies/{depId}/endpoints")
     fun addEndpoint(@PathVariable appId: Long, @PathVariable depId: Long, @RequestBody endpointDto: EndpointDto) =

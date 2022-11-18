@@ -67,8 +67,9 @@ class AdminService(
             .doOnError { log.error("Unable to create new Dependency", it) }
 
 
-    fun dependencyExistsBy(url: String, appName: String): Mono<Boolean> =
-        Mono.just(dependencyRepository.existsByUrlAndApplication_Name(url, appName))
+    fun findDependencyBy(url: String, appName: String): Mono<DependencyDto> =
+        Mono.justOrEmpty(dependencyRepository.findByUrlAndApplication_Name(url, appName))
+            .map { dependencyMapper.toDto(it) }
             .doOnSuccess { log.info { "Dependency existance for appName=$appName  and depUrl= $url ... result found : $it " } }
             .doOnError { log.error("Unable to find dependency with the given criteria", it) }
 
