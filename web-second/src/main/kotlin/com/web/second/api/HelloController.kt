@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class HelloController {
     @GetMapping("/hello")
-    fun hello() = Dto("hello from Second Web")
+    fun hello(): Dto {
+        System.out.println("called....")
+        return Dto("hello from Second Web")
+    }
 
 }
 

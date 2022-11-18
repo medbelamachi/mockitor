@@ -6,9 +6,14 @@ import feign.Logger
 import feign.jackson.JacksonDecoder
 import feign.jackson.JacksonEncoder
 import feign.okhttp.OkHttpClient
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
 
-
-class Api {
+@Component
+class Api(
+    @Autowired
+    private var feignSecondClient: FeignSecondClient
+) {
     private var mapper = jacksonObjectMapper()
     private var feignClient: SecondClient = RoutedBuilder.instance()
         .client(OkHttpClient())
@@ -19,4 +24,5 @@ class Api {
 
 
     fun callSecond() = feignClient.hello()
+    fun callWithFeign() = feignSecondClient.hello()
 }

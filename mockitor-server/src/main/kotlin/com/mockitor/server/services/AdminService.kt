@@ -14,6 +14,7 @@ import com.mockitor.server.repositories.MockServerRepository
 import mu.KotlinLogging
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Service
@@ -39,6 +40,22 @@ class AdminService(
         )
             .map(applicationMapper::toDto)
             .doOnSuccess { log.info { "new app created : ${it.name} , with id : ${it.id}" } }
+
+
+    /**
+    Find all apps
+     */
+    fun findApps(): Flux<ApplicationDto> = Flux.fromIterable(applicationRepository.findAll())
+        .map(applicationMapper::toDto)
+
+    /**
+     * Find all dependencies of a given application
+     */
+    fun findDependenciesBy(appId: Long): Flux<DependencyDto> =
+        Mono.justOrEmpty(dependencyRepository.findDependenciesByApplication_Id(appId))
+            .flatMapMany { Flux.fromIterable(it) }
+            .map(dependencyMapper::toDto)
+
 
     /**
      * add new Dependency to an existing application

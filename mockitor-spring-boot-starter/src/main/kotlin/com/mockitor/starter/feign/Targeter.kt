@@ -4,12 +4,15 @@ import com.mockitor.starter.feign.Targeter.RouteTarget.RouteTarget.HEADER_MOCKIT
 import com.mockitor.starter.feign.Targeter.RouteTarget.RouteTarget.HEADER_MOCKITOR_DEPENDENCY
 import com.mockitor.starter.services.AdminService
 import com.mockitor.starter.utils.SpringUtils
+import feign.Feign
 import feign.Request
 import feign.RequestTemplate
 import feign.Target.HardCodedTarget
 import mu.KotlinLogging
+import org.springframework.cloud.openfeign.FeignClientFactoryBean
+import org.springframework.cloud.openfeign.FeignContext
 
-class Targeter {
+class Targeter : org.springframework.cloud.openfeign.Targeter {
 
     class RouteTarget<T>(type: Class<T>?, url: String?) : HardCodedTarget<T>(type, url) {
         object RouteTarget {
@@ -36,6 +39,15 @@ class Targeter {
             }
             return super.apply(input)
         }
+    }
+
+    override fun <T : Any?> target(
+        factory: FeignClientFactoryBean,
+        feign: Feign.Builder,
+        context: FeignContext,
+        target: HardCodedTarget<T>
+    ): T {
+        return feign.target(RouteTarget<T>(target.type(), target.url()))
     }
 
 
