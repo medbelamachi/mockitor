@@ -12,6 +12,8 @@ class SpringUtils : ApplicationContextAware {
         fun <T> getBean(beanClass: Class<T>): T {
             return ctx.getBean(beanClass)
         }
+
+        fun initialzed(): Boolean = ::ctx.isInitialized
     }
 
     override fun setApplicationContext(applicationContext: ApplicationContext) {

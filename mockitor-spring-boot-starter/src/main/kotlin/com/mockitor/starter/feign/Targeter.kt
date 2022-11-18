@@ -20,14 +20,18 @@ class Targeter {
 
         private val log = KotlinLogging.logger {}
         override fun apply(input: RequestTemplate?): Request {
-            val baseUrl = this.url()
-            val adminService = SpringUtils.getBean(AdminService::class.java)
-            adminService.route(baseUrl)?.let {
-                input?.apply {
-                    header(HEADER_MOCKITOR_APP, it.appName)
-                    header(HEADER_MOCKITOR_DEPENDENCY, it.depName)
-                    target(it.url)
-                    log.info { "switching target url to ${it.url}" }
+            when {
+                SpringUtils.initialzed() -> {
+                    val baseUrl = this.url()
+                    val adminService = SpringUtils.getBean(AdminService::class.java)
+                    adminService.route(baseUrl)?.let {
+                        input?.apply {
+                            header(HEADER_MOCKITOR_APP, it.appName)
+                            header(HEADER_MOCKITOR_DEPENDENCY, it.depName)
+                            target(it.url)
+                            log.info { "switching target url to ${it.url}" }
+                        }
+                    }
                 }
             }
             return super.apply(input)
